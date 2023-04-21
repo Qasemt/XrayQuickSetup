@@ -1,0 +1,7 @@
+{
+  "name": "vless+reality",
+  "email": "qasemt@gmail.com",
+  "VLESS_PORT": 20000,
+  "sni": "yahoo.com",
+  "path_vless_nginx": "/vless"
+}
