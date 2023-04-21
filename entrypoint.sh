@@ -12,7 +12,7 @@ path_vless_nginx=$(jq -r '.path_vless_nginx' ${TMP_XRAY}default_xray.json )
 
 # NGIX Config __________________________________________________
 
-sed -i "s#VLESS_PORT#$vless_port#g;s#VLESS_WSPATH#$path_vless_nginx#g" /etc/nginx/nginx.conf
+sed -i "s#VLESS_PORT#$vless_port#g" /etc/nginx/nginx.conf
 # xray ___________________________________________________________
 
 json=$(cat < ${TMP_XRAY}config.json)
@@ -26,7 +26,6 @@ serverIp=$(curl -s ipv4.wtfismyip.com/text)
 if [ -z "${serverIp}" ]; then
     serverIp="127.0.0.1"
 fi
-
 uuid=$(xray uuid)
 shortId=$(openssl rand -hex 8)
 
