@@ -4,7 +4,7 @@ LABEL maintainer="qasemt@gmail.net"
 LABEL version="0.1"
 LABEL description="docker image for xray reality Qasemt@gmail.com"
 
-EXPOSE 80
+
 USER root
 
 ENV TMP_XRAY /usr/local/tmp_xray/
@@ -46,7 +46,7 @@ RUN chmod a+x "${TMP_XRAY}entrypoint.sh" && \
 WORKDIR $TMP_XRAY
 RUN sh  entrypoint.sh
 
-EXPOSE 8080
+EXPOSE 9999
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 #ENTRYPOINT ["tail", "-f", "/dev/null"]

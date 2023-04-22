@@ -55,5 +55,5 @@ div {
 </body>
 </html>
 EOF
-
+echo https://$URL/$UUID.html > ${CNF_XRAY}/info
 exit 0
