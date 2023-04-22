@@ -1,8 +1,95 @@
 {
-  "log": {
-    "loglevel": "warning",
-    "access": "./access.log"
+  "api": {
+    "tag": "api",
+    "services": ["HandlerService", "LoggerService", "StatsService"]
   },
+  "log": {
+    "access": "/dev/null",
+    "error": "/dev/null",
+    "loglevel": "warning"
+  },
+  "stats": {},
+  "policy": {
+    "levels": {
+      "0": {
+        "statsUserUplink": true,
+        "statsUserDownlink": true
+      }
+    },
+    "system": {
+      "statsInboundUplink": true,
+      "statsInboundDownlink": true,
+      "statsOutboundUplink": true,
+      "statsOutboundDownlink": true
+    }
+  },
+  "dns": {
+    "servers": ["https+local://cloudflare-dns.com/dns-query", "1.1.1.1", "1.0.0.1", "8.8.8.8", "8.8.4.4", "localhost"]
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": 0,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "email": "",
+            "id": "",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "tcpSettings": {
+          "acceptProxyProtocol": false,
+          "header": {
+            "type": "none"
+          }
+        },
+        "realitySettings": {
+          "show": false,
+          "xver": 0,
+          "fingerprint": "chrome",
+          "dest": "",
+          "serverNames": [],
+          "privateKey": "",
+          "publicKey": "",
+          "minClient": "",
+          "maxClient": "",
+          "maxTimediff": 0,
+          "shortIds": [""]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      }
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 10085,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "127.0.0.1"
+      },
+      "tag": "api"
+    }
+  ],
+
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "blocked"
+    }
+  ],
   "routing": {
     "domainStrategy": "IPIfNonMatch",
     "rules": [
@@ -12,222 +99,20 @@
         "type": "field"
       },
       {
-        "outboundTag": "blocked",
-        "ip": ["geoip:private"],
-        "type": "field"
+        "domain": ["Samandehi.ir"],
+        "type": "field",
+        "outboundTag": "blocked"
       },
       {
-        "outboundTag": "blocked",
+        "type": "field",
+        "ip": ["geoip:ir", "geoip:private"],
+        "outboundTag": "blocked"
+      },
+      {
         "protocol": ["bittorrent"],
-        "type": "field"
+        "type": "field",
+        "outboundTag": "blocked"
       }
     ]
-  },
-  "dns": null,
-  "inbounds": [
-    {
-      "listen": "127.0.0.1",
-      "port": 80,
-      "protocol": "vless",
-      "settings": {
-        "clients": [
-          {
-            "email": "ali_adsl1",
-            "flow": "xtls-rprx-vision",
-            "id": "51ab23e1-7483-439f-b11a-216ed8a201e1"
-          }
-        ],
-        "decryption": "none",
-        "fallbacks": []
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "tcpSettings": {
-          "acceptProxyProtocol": false,
-          "header": {
-            "type": "none"
-          }
-        },
-        "realitySettings": {
-          "show": false,
-          "xver": 0,
-          "fingerprint": "chrome",
-          "dest": "yahoo.com:443",
-          "serverNames": ["yahoo.com", "www.yahoo.com"],
-          "privateKey": "4NOBxDrEsOhNI3Y3EnVIy_TN-uyBoAjQw6QM0YsOi0s",
-          "publicKey": "CbcY9qc4YuMDJDyyL0OITlU824TBg1O84ClPy27e2RM",
-          "minClient": "",
-          "maxClient": "",
-          "maxTimediff": 0,
-          "shortIds": ["de6842d4"]
-        }
-      },
-      "tag": "inbound-80",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      }
-    },
-    {
-      "listen": null,
-      "port": 82,
-      "protocol": "vless",
-      "settings": {
-        "clients": [
-          {
-            "email": "ali_adsl2",
-            "flow": "xtls-rprx-vision",
-            "id": "d22cb157-29c4-4e5f-db27-93ec6e0263dc"
-          }
-        ],
-        "decryption": "none",
-        "fallbacks": []
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "tcpSettings": {
-          "acceptProxyProtocol": false,
-          "header": {
-            "type": "none"
-          }
-        },
-        "realitySettings": {
-          "show": false,
-          "xver": 0,
-          "fingerprint": "chrome",
-          "dest": "github.com:443",
-          "serverNames": ["github.com", "www.github.com"],
-          "privateKey": "0H3OJEYEu6XW7woqy7cKh2vzg6YHkbF_xSDTHKyrsn4",
-          "publicKey": "mzevpYbS8kXengBY5p7tt56QE4tS3lwlwRemmkcQeyc",
-          "minClient": "",
-          "maxClient": "",
-          "maxTimediff": 0,
-          "shortIds": ["71ec2cd1"]
-        }
-      },
-      "tag": "inbound-82",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      }
-    },
-    {
-      "listen": null,
-      "port": 83,
-      "protocol": "vless",
-      "settings": {
-        "clients": [
-          {
-            "email": "adsl_test2",
-            "flow": "xtls-rprx-vision",
-            "id": "887d9f4b-580e-496f-d0c8-456e9ade7e7c"
-          }
-        ],
-        "decryption": "none",
-        "fallbacks": []
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "tcpSettings": {
-          "acceptProxyProtocol": false,
-          "header": {
-            "type": "none"
-          }
-        },
-        "realitySettings": {
-          "show": false,
-          "xver": 0,
-          "fingerprint": "chrome",
-          "dest": "yahoo.com:443",
-          "serverNames": ["yahoo.com", "www.yahoo.com"],
-          "privateKey": "GKIKo7rcXVyle-EUHtGIDtYnDsI6osQmOUl3DTJRAGc",
-          "publicKey": "VcqHivYGGoBkcxOI6cSSjQmneltstkb2OhvO53dyhEM",
-          "minClient": "",
-          "maxClient": "",
-          "maxTimediff": 0,
-          "shortIds": ["985c8749"]
-        }
-      },
-      "tag": "inbound-83",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      }
-    },
-    {
-      "listen": null,
-      "port": 443,
-      "protocol": "vless",
-      "settings": {
-        "clients": [
-          {
-            "email": "irancell",
-            "flow": "xtls-rprx-vision",
-            "id": "063fa435-1c31-46c6-942f-53fa4000c4f3"
-          }
-        ],
-        "decryption": "none",
-        "fallbacks": []
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "security": "reality",
-        "realitySettings": {
-          "show": true,
-          "xver": 0,
-          "fingerprint": "chrome",
-          "dest": "wikipedia.org:443",
-          "serverNames": ["wikipedia.org", "www.wikipedia.org"],
-          "privateKey": "yEpOzQV04NNcycWVeWtRNTzv5TS-ynTuKRacZCH-6U8",
-          "publicKey": "O9RSr5gSdok2K_tobQnf_scyKVqnCx6C4Jrl7_rCZEQ",
-          "minClient": "",
-          "maxClient": "",
-          "maxTimediff": 0,
-          "shortIds": ["fbeb0862"]
-        },
-        "grpcSettings": {
-          "serviceName": ""
-        }
-      },
-      "tag": "inbound-443",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      }
-    }
-  ],
-  "outbounds": [
-    {
-      "protocol": "freedom",
-      "settings": {}
-    },
-    {
-      "protocol": "blackhole",
-      "settings": {},
-      "tag": "blocked"
-    }
-  ],
-  "transport": null,
-  "policy": {
-    "levels": {
-      "0": {
-        "statsUserUplink": true,
-        "statsUserDownlink": true
-      }
-    },
-    "system": {
-      "statsInboundDownlink": true,
-      "statsInboundUplink": true
-    }
-  },
-  "api": {
-    "services": ["HandlerService", "LoggerService", "StatsService"],
-    "tag": "api"
-  },
-  "stats": {},
-  "reverse": null,
-  "fakeDns": null
+  }
 }
