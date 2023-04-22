@@ -30,7 +30,7 @@ COPY default_xray.json $TMP_XRAY
 COPY entrypoint.sh $TMP_XRAY 
 
 # Install Xray-core
-RUN curl -L -H "Cache-Control: no-cache" -o /tmp/xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip && \
+RUN curl -L  -o /tmp/xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip && \
     unzip /tmp/xray.zip -d /usr/local/bin/ && \
     rm /tmp/xray.zip && \
     chmod +x /usr/local/bin/xray
