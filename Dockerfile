@@ -20,7 +20,7 @@ RUN apk update && \
 
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY nginx.conf /etc/nginx/nginx.conf
+#COPY nginx.conf /etc/nginx/nginx.conf
 COPY config.json $TMP_XRAY 
 COPY default_xray.json $TMP_XRAY 
 COPY entrypoint.sh $TMP_XRAY 
