@@ -3,7 +3,7 @@ FROM nginx:mainline-alpine-slim
 LABEL maintainer="qasemt@gmail.net"
 LABEL version="0.1"
 LABEL description="docker image for xray reality Qasemt@gmail.com"
-
+EXPOSE 8080
 
 USER root
 
@@ -48,5 +48,4 @@ RUN sh  entrypoint.sh
 
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
-EXPOSE 9999
 #ENTRYPOINT ["tail", "-f", "/dev/null"]

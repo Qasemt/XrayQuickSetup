@@ -29,7 +29,7 @@
   "inbounds": [
     {
       "listen": "0.0.0.0",
-      "port": 10000,
+      "port": 1089,
       "protocol": "vless",
       "settings": {
         "clients": [
@@ -73,7 +73,7 @@
     },
     {
       "listen": "127.0.0.1",
-      "port": 20000,
+      "port": 1090,
       "protocol": "vmess",
       "settings": {
         "clients": [
