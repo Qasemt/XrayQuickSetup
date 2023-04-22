@@ -38,7 +38,7 @@
     },
     {
       "listen": null,
-      "port": 81,
+      "port": 80,
       "protocol": "vless",
       "settings": {
         "clients": [
@@ -61,7 +61,7 @@
           }
         },
         "realitySettings": {
-          "show": true,
+          "show": false,
           "xver": 0,
           "fingerprint": "chrome",
           "dest": "yahoo.com:443",
@@ -74,7 +74,7 @@
           "shortIds": ["de6842d4"]
         }
       },
-      "tag": "inbound-81",
+      "tag": "inbound-80",
       "sniffing": {
         "enabled": true,
         "destOverride": ["http", "tls"]
