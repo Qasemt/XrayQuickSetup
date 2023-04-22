@@ -12,7 +12,7 @@
     },
     "info": {
       "name": "info",
-      "command": "cat /usr/local/mysql/info",
+      "command": "cat /usr/local/etc/xray/",
       "runAtStart": true
     }
   }

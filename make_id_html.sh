@@ -48,5 +48,5 @@ div {
 </html>
 EOF
 
-echo https://$URL/$UUID.html > /usr/local/mysql/info
+echo https://$URL/$UUID.html > $CNF_XRAY
 # exec "$@"
