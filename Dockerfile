@@ -24,7 +24,7 @@ RUN apk update && \
 
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-#COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY config.json $CNF_XRAY 
 COPY default_xray.json $TMP_XRAY 
 COPY entrypoint.sh $TMP_XRAY 
@@ -46,7 +46,7 @@ RUN chmod a+x "${TMP_XRAY}entrypoint.sh" && \
 WORKDIR $TMP_XRAY
 RUN sh  entrypoint.sh
 
-EXPOSE 9999
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+EXPOSE 9999
 #ENTRYPOINT ["tail", "-f", "/dev/null"]

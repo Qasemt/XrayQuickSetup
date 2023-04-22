@@ -9,6 +9,7 @@ PRVKEY_VL=${PRVKEY_VL:-"0H3OJEYEu6XW7woqy7cKh2vzg6YHkbF_xSDTHKyrsn4"}
 SHORTID_VL=${SHORTID_VL:-"71ec2cd1"}
 SNI_VL=${SNI_VL:-"yahoo.com"}
 SNI_FULL=${SNI_FULL:-"[\"yahoo.com\", \"www.yahoo.com\"]"}
+#NGINX_PORT=${NGINX_PORT:-""}
 URL=${HOSTNAME}-8080.csb.app
 if [ -z "${URL}" ]; then
     URL="127.0.0.1"
