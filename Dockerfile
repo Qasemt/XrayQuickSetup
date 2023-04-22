@@ -9,7 +9,11 @@ USER root
 
 ENV TMP_XRAY /usr/local/tmp_xray/
 ENV CNF_XRAY /usr/local/etc/xray/
+ENV UUID de04add9-5c68-8bab-950c-08cd5320df18
+
 ENV VLESS_WSPATH /vless
+ENV VMESSPATH /vmess
+
 RUN mkdir -p $TMP_XRAY && \
     mkdir -p $CNF_XRAY
 
@@ -21,7 +25,7 @@ RUN apk update && \
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 #COPY nginx.conf /etc/nginx/nginx.conf
-COPY config.json $TMP_XRAY 
+COPY config.json $CNF_XRAY 
 COPY default_xray.json $TMP_XRAY 
 COPY entrypoint.sh $TMP_XRAY 
 
@@ -42,6 +46,7 @@ RUN chmod a+x "${TMP_XRAY}entrypoint.sh" && \
 WORKDIR $TMP_XRAY
 RUN sh  entrypoint.sh
 
+EXPOSE 8080
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
