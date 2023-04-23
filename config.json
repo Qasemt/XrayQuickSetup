@@ -36,7 +36,7 @@
           {
             "email": "VLESS_REALITY1@usr",
             "flow": "xtls-rprx-vision",
-            "id": "d22cb157-29c4-4e5f-db27-93ec6e0263dc"
+            "id": "UUID"
           }
         ],
         "decryption": "none",
@@ -94,7 +94,7 @@
         "security": "none",
 
         "wsSettings": {
-          "path": "/"
+          "path": "/vmess"
         }
       },
       "tag": "api_vmess",
