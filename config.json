@@ -28,7 +28,7 @@
   },
   "inbounds": [
     {
-      "listen": "0.0.0.0",
+      "listen": "127.0.0.1",
       "port": 1089,
       "protocol": "vless",
       "settings": {
