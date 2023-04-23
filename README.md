@@ -59,3 +59,9 @@ echo "$url" >> /root/testurl.url
 qrencode -s 120 -t ANSIUTF8 "$url"
 qrencode -s 50 -o qr.png "$url"
 ```
+
+## Docker CMD
+
+```bash
+docker run   -it   -p 9091:9091 contianer_name:tag
+```

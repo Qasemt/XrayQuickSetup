@@ -2,6 +2,12 @@
 
 
 
+# FOR DOPRAX SERVER
+NGINX_SERVER_PORT=${NGINX_SERVER_PORT:-80}
+
+## ANY SERVER 
+#NGINX_SERVER_PORT=${NGINX_SERVER_PORT:-8080}
+
 VMESS_WSPATH=${VMESS_WSPATH:-'/vmess'}
 VLESS_WSPATH=${VLESS_WSPATH:-'/vless'}
 PUBKEY_VL=${PUBKEY_VL:-"mzevpYbS8kXengBY5p7tt56QE4tS3lwlwRemmkcQeyc"}
@@ -14,10 +20,11 @@ URL="www.server_name.net"-8080.csb.app
 if [ -z "${URL}" ]; then
     URL="127.0.0.1"
 fi
+## EDIT CONFIGs
 sed -i "s#UUID#$UUID#g;s#PUBKEY_VL#$PUBKEY_VL#g;s#PRVKEY_VL#$PRVKEY_VL#g;s#SHORTID_VL#$SHORTID_VL#g;s#SNI_VL#$SNI_VL#g;s#SNI_FULL#$SNI_FULL#g;s#VMESS_WSPATH#$VMESS_WSPATH#g;s#VLESS_WSPATH#$VLESS_WSPATH#g" /usr/local/etc/xray/config.json
 
+sed -i "s#NGINX_SERVER_PORT#$NGINX_SERVER_PORT#g;" /etc/nginx/nginx.conf
 
-#sed -i "s#VMESS_WSPATH#$VMESS_WSPATH#g;s#VLESS_WSPATH#$VLESS_WSPATH#g" /etc/nginx/nginx.conf
 
 vmlink=vmess://$(echo -n "{\"v\":\"2\",\"ps\":\"vmess_usr\",\"add\":\"$URL\",\"port\":\"443\",\"id\":\"$UUID\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"$URL\",\"path\":\"$VMESS_WSPATH\",\"tls\":\"tls\"}" | base64 -w 0)
 
